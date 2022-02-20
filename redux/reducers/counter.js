@@ -1,3 +1,5 @@
+//This is the reducer page.
+//We define out actions in the counterActions and now we say what these actions will do when called.
 const initialState = {
     token: 0,
     username:""

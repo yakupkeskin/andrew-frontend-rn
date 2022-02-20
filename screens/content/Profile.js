@@ -10,10 +10,8 @@ export default function Profile({navigation}) {
   const [tweetList, setTweetList] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
   const dispatch = useDispatch();
-  
 
   function logout(){
-    console.log("Came Here")
     //dispatch(reset());
     navigation.navigate("LoginNavigator")
   }
@@ -35,9 +33,9 @@ export default function Profile({navigation}) {
     };
     console.log("config", config);
     axios
-      .get("https://andrew-backend-django.herokuapp.com/profile/", config)
+      .get("https://andrew-backend-django.herokuapp.com/profile/", config)//This request is for get only the currents user's tweets.
       .then(function (response) {
-        console.log("TWeets Came");
+        console.log("TWeets Came"); 
         console.log(response.data);
         setTweetList(response.data);
       })

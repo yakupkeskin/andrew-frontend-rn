@@ -8,12 +8,11 @@ import {
   TextArea,
 } from "react-native";
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux"; //For use the redux.
 import axios from "axios";
 import { TextInput } from "react-native-gesture-handler";
 
 export default function NewTweet({ navigation }) {
-  const dispatch = useDispatch();
   const currentUser = useSelector((state) => state);
   const [tweet, setTweet] = useState("");
   function newTweet() {
@@ -29,7 +28,7 @@ export default function NewTweet({ navigation }) {
     };
     console.log("data", data);
     console.log("config", config);
-    axios
+    axios                           //Request to single_tweet view in django for add new tweet.
       .post("https://andrew-backend-django.herokuapp.com/single_tweet/", data, config)
       .then(function (response) {
         console.log("This is tweetted");

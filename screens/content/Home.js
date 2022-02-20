@@ -11,12 +11,12 @@ import {
 } from "react-native";
 import React from "react";
 import axios from "axios";
-import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";  //For use the redux.
+import { useEffect, useState } from "react"; 
 import Ad from "../../components/Ad";
 
 export default function Home({ navigation }) {
-  const currentUser = useSelector((state) => state);
+  const currentUser = useSelector((state) => state); // Current user information from redux.
   const [tweetList, setTweetList] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
 
@@ -24,7 +24,7 @@ export default function Home({ navigation }) {
     return new Promise((resolve) => setTimeout(resolve, timeout));
   };
 
-  const onRefresh = React.useCallback(() => {
+  const onRefresh = React.useCallback(() => {  //This is for refresh the page when we pull screen down.
     setRefreshing(true);
     wait(2000).then(() => setRefreshing(false));
   }, []);
@@ -32,12 +32,12 @@ export default function Home({ navigation }) {
   function pullTweets() {
     let config = {
       headers: {
-        Authorization: "Token " + currentUser.token,
+        Authorization: "Token " + currentUser.token,  //We need to include user token to request header.
       },
     };
     console.log("config", config);
     axios
-      .get("https://andrew-backend-django.herokuapp.com/homepage/", config)
+      .get("https://andrew-backend-django.herokuapp.com/homepage/", config) //Request to homepage for pull all tweets. 
       .then(function (response) {
         console.log("TWeets Came");
         console.log(response.data);
@@ -54,7 +54,7 @@ export default function Home({ navigation }) {
   }, [refreshing]);
 
   if (tweetList.length > 0) {
-    return (
+    return ( 
       <SafeAreaView style={{backgroundColor:"white"}}>
         <FlatList
           data={tweetList.reverse()}

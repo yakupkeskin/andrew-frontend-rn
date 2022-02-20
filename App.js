@@ -5,28 +5,15 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useState, useEffect } from "react";
 import LoginNavigator from "./components/LoginNavigator";
 import HomeNavigator from "./components/HomeNavigator";
-import { Provider } from "react-redux";
+import { Provider } from "react-redux"; // We use provider for the components that we want to use redux in.
 import store from "./redux/store";
 
 
 export default function App({ navigation, route }) {
-  const [loggedIn, setLoggedIn] = useState(true);
-  const asd = () => {
-    console.log("Alooo");
-  };
 
-  useEffect(() => {
-    console.log("Use Effect App.js");
-  }, [loggedIn]);
-
-  if (route) {
-    console.log(route);
-    console.log("Route vardır");
-  }
   Stack = createNativeStackNavigator();
-
   return (
-    <Provider store={store}>
+    <Provider store={store}> 
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen

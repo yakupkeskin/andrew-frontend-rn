@@ -11,7 +11,7 @@ import {
   TouchableOpacity,
   Alert,
 } from "react-native";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch } from "react-redux"; // This is for set the redux variables.
 import Ad from "../../components/Ad";
 import {SetToken} from "../../redux/actions/counterActions"
 
@@ -24,7 +24,7 @@ export default function Login({navigation}) {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    setRedux();
+    setRedux(); // Whenever token changes we update the redux.
   }, [token]);
 
   function setRedux(){
@@ -33,7 +33,7 @@ export default function Login({navigation}) {
 
   function login(){
     const json = JSON.stringify({ "username": userName,"password":password });
-    axios.post('https://andrew-backend-django.herokuapp.com/auth/token/login/',{"username":userName,"password":password})
+    axios.post('https://andrew-backend-django.herokuapp.com/auth/token/login/',{"username":userName,"password":password}) //Login request
     .then(function(response){
       if(response.data.auth_token)
       {
@@ -50,9 +50,7 @@ export default function Login({navigation}) {
           { text: "OK", onPress: () => console.log("OK Pressed") }
         ]
       );
-    });
-    //navigation.navigate("HomeNavigator", {screen:"Home",params:{"auth_token":"hello","username":"hello bitcj"}})
-    
+    });  
   }
   return (
     <View style={styles.container}>

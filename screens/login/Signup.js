@@ -11,7 +11,7 @@ import {
   TouchableOpacity,
   Alert,
 } from "react-native";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import {SetToken} from "../../redux/actions/counterActions"
 
@@ -28,26 +28,19 @@ export default function Signup({navigation}) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setRedux();
-
+    setRedux(); // Whenever token changes we update the redux.
   }, [token]);
 
   function setRedux(){
-    console.log("Token Seetting", token)
-    dispatch(SetToken(token,userName));
-    
+    dispatch(SetToken(token,userName));   
   }
-
-
-  const handleMessage = (message) =>{
-    console.log("?")
+  const handleMessage = (message) =>{ //Alert Messages.
     setAlertMessage(message)
     setJustForMessage(justForMessage+1)
   }
 
   
-  function login(){
-    const json = JSON.stringify({ "username": userName,"password":password });
+  function login(){ //After signup we directly login.
     axios.post('https://andrew-backend-django.herokuapp.com/auth/token/login/',{"username":userName,"password":password})
     .then(function(response){
       setToken(response.data.auth_token)
@@ -62,10 +55,9 @@ export default function Signup({navigation}) {
         ]
       );
     });
-    //navigation.navigate("HomeNavigator", {screen:"Home",params:{"auth_token":"hello","username":"hello bitcj"}})
   }
  
-  async function alertError(response){
+  async function alertError(response){ //Set alert messages for different responses from backend.
     if(response){
       console.log("came here  ")
       console.log(response)
@@ -97,8 +89,7 @@ export default function Signup({navigation}) {
 
 
   function signUp(){
-    const json = JSON.stringify({"username":userName,"password":password,"re_password":rePassword,"email":email});
-    axios.post('https://andrew-backend-django.herokuapp.com/auth/users/', 
+    axios.post('https://andrew-backend-django.herokuapp.com/auth/users/', //Sign up request.
       {"username":userName,"password":password,"re_password":rePassword,"email":email}
     )
     .then(function (response) {
@@ -106,10 +97,8 @@ export default function Signup({navigation}) {
       navigation.navigate("HomeNavigator",{screen:"Home"})
     })
     .catch(function (error) {
-      //console.log(error.response)
       console.log(error)
       alertError(error.response);
-      //console.log("ReqError",reqError)
     });
   }
 
@@ -134,7 +123,7 @@ export default function Signup({navigation}) {
 
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={require("../../assets/favicon.png")} />
+      <Image style={styles.image} source={require("../../assets/twitter.png")} />
  
       <StatusBar style="auto" />
       <View style={styles.inputView}>
@@ -195,8 +184,12 @@ const styles = StyleSheet.create({
   },
  
   image: {
-    marginBottom: 40,
+    marginBottom: 20,
+    height:70,
+    width:70,
+    backgroundColor:"black"
   },
+ 
  
   inputView: {
     backgroundColor: "white",
@@ -224,4 +217,5 @@ const styles = StyleSheet.create({
     marginTop: 40,
     backgroundColor: "white",
   },
+  
 });

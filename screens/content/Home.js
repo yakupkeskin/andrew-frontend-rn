@@ -93,7 +93,6 @@ export default function Home({ navigation }) {
           )}
           keyExtractor={(item) => item.tweet_id}
         />
-        <Ad/>
       </SafeAreaView>
     );
   } else {

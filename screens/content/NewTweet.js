@@ -23,8 +23,6 @@ export default function NewTweet({ navigation }) {
     };
     let data = {
       tweet_text: tweet["text"],
-      tweet_user: currentUser.username,
-      tweet_date: "",
     };
     console.log("data", data);
     console.log("config", config);

@@ -54,7 +54,7 @@ export default function Login({navigation}) {
   }
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={require("../../assets/twitter.png")} />
+      <Image style={styles.image} source={require("../../assets/favicon.png")} />
  
       <StatusBar style="auto" />
       <View style={styles.inputView}>
@@ -99,9 +99,6 @@ const styles = StyleSheet.create({
  
   image: {
     marginBottom: 20,
-    height:70,
-    width:70,
-    backgroundColor:"black"
   },
  
   inputView: {

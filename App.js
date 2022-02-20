@@ -21,7 +21,7 @@ export default function App({ navigation, route }) {
             name="LoginNavigator"
             component={LoginNavigator}
             options={{
-              title: "Twitter",
+              title: "Andrewitter",
               backgroundColor: "#1DA1F2",
               headerStyle: {
                 backgroundColor: "#1DA1F2",
@@ -32,7 +32,7 @@ export default function App({ navigation, route }) {
             name="HomeNavigator"
             component={HomeNavigator}
             options={{
-              title: "Twitter",
+              title: "Andrewitter",
               headerBackVisible: false,
               headerStyle: {
                 backgroundColor: "#1DA1F2",
